@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>JavaScript Demo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="somnath.js" type="text/javascript"></script>
+</head>
+<body>
+<button onclick="playerSelect()">Play</button>
+</body>
+</html>
+
+
+<script>
+//score variables
+let playerScore = 0;
+let computerScore = 0;
+
+//game function
+function Play(playerSelection) {
+    
+    //player text to lower case
+    playerSelection = playerSelection.toLowerCase();
+
+    //computer selects random
+    let choose = Math.floor(Math.random() * 3) + 1;
+    
+    if (choose == 1) {
+        computerSelection = "scissor";
+    } else if (choose == 2) {
+        computerSelection = "rock";
+    }
+    else {
+        computerSelection = "paper";
+    }
+
+    //the game    
+    if (playerSelection == computerSelection) {
+        console.log("It's a draw!");
+    } else if (playerSelection == "scissor" && computerSelection == "paper") {
+        playerScore = playerScore + 1;
+    } else if (playerSelection == "paper" && computerSelection == "scissor") {
+        computerScore = computerScore + 1;
+    } else if (playerSelection == "rock" && computerSelection == "scissor") {
+        playerScore = playerScore + 1;
+    } else if (computerSelection == "rock" && playerSelection == "scissor") {
+        computerScore = computerScore + 1;
+    } else if (computerSelection == "rock" && playerSelection == "paper") {
+        playerScore = playerScore + 1;
+    } else if (playerSelection == "rock" && computerSelection == "paper") {
+        computerScore = computerScore + 1;
+    } else console.log("Wrong input!");
+
+    //score announce
+    console.log("Player Score: " + playerScore)
+    console.log("Computer Score: " + computerScore)
+
+    //check for winner
+    if (playerScore == 5) {
+        console.log("Player has won!");
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore == 5) {
+        console.log("Computer has won!");
+        playerScore = 0;
+        computerScore = 0;
+    }
+
+}
+
+//Player select function
+
+function playerSelect() {
+
+const playerSelection = prompt("Paper, Rock or Scissor?", "");
+
+    if (playerSelection != null) {
+        const computerSelection = Play(playerSelection);
+    }
+}
+
+
+</script>
